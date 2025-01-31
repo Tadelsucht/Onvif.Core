@@ -23,11 +23,11 @@ namespace Onvif.Core.Client.Camera
 
         public override int GetHashCode()
         {
-            Fnv1aImpl fnv1 = new();
-            fnv1.AppendObj(Host)
-                .AppendObj(UserName)
-                .AppendObj(Password);
-            return base.GetHashCode();
+            var fnv1 = new Fnv1aImpl();
+            fnv1.AppendObj(Host);
+            fnv1.AppendObj(UserName);
+            fnv1.AppendObj(Password);
+            return fnv1.Hash;
         }
 
         public override string ToString()

@@ -63,13 +63,13 @@ namespace Onvif.Core.Discovery.Models
 
         public override int GetHashCode()
         {
-            Fnv1aImpl hash = new ();
-            return hash.AppendObjs(Types)
-                       .AppendObjs(XAdresses)
-                       .AppendObj(Model)
-                       .AppendObj(Name)
-                       .AppendObj(Address)
-                       .Hash;
+            var fnv1 = new Fnv1aImpl();
+            fnv1.AppendObjs(Types);
+            fnv1.AppendObjs(XAdresses);
+            fnv1.AppendObj(Model);
+            fnv1.AppendObj(Name);
+            fnv1.AppendObj(Address);
+            return fnv1.Hash;
         }
     }
 }
