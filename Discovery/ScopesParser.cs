@@ -194,7 +194,7 @@ namespace Onvif.Core.Discovery
                             case 12:
                                 if (ch == ':')
                                 {
-                                    name = Uri.UnescapeDataString(scopes.Substring(startIndex, i - 6 - startIndex));
+                                    name = Uri.UnescapeDataString(scopes.Substring(startIndex, i - 6 - startIndex)).Trim();
                                     state = 13;
                                 }
                                 else
@@ -209,7 +209,7 @@ namespace Onvif.Core.Discovery
                             case 57:
                                 if (ch == ':')
                                 {
-                                    name = Uri.UnescapeDataString(scopes.Substring(startIndex, i - 6 - startIndex));
+                                    name = Uri.UnescapeDataString(scopes.Substring(startIndex, i - 6 - startIndex)).Trim();
                                     return true;
                                 }
                                 else
@@ -224,7 +224,7 @@ namespace Onvif.Core.Discovery
                             case 29:///////////////////////////////////////////////////////////////////////
                                 if (ch == ':')
                                 {
-                                    model = Uri.UnescapeDataString(scopes.Substring(startIndex, i - 6 - startIndex));
+                                    model = Uri.UnescapeDataString(scopes.Substring(startIndex, i - 6 - startIndex)).Trim();
                                     return true;
                                 }
                                 else
@@ -239,7 +239,7 @@ namespace Onvif.Core.Discovery
                             case 44://///////////////////////////
                                 if (ch == ':')
                                 {
-                                    model = Uri.UnescapeDataString(scopes.Substring(startIndex, i - 6 - startIndex));
+                                    model = Uri.UnescapeDataString(scopes.Substring(startIndex, i - 6 - startIndex)).Trim();
                                     state = 45;
                                 }
                                 else
@@ -337,7 +337,7 @@ namespace Onvif.Core.Discovery
                     }
 
                     int count = length - startIndex;
-                    string t = count <= 0 ? string.Empty : Uri.UnescapeDataString(scopes.Substring(startIndex, count));
+                    string t = count <= 0 ? string.Empty : Uri.UnescapeDataString(scopes.Substring(startIndex, count)).Trim();
                     switch (state)
                     {
                         case 6:
@@ -354,7 +354,7 @@ namespace Onvif.Core.Discovery
                         case 55:
                         case 56:
                         case 57:
-                            name = t;
+                            name = t.Trim();
                             return true;
                         case 23:
                         case 24:
@@ -370,7 +370,7 @@ namespace Onvif.Core.Discovery
                         case 42:
                         case 43:
                         case 44:
-                            model = t;
+                            model = t.Trim();
                             return true;
                         default:
                             return false;
